@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'kr.entree.spigradle' version '2.1.1'
+}
+
+dependencies {
+    compileOnly spigot('1.14.4') // <-- change this to the version you are coding for
+}
+
+group 'me.goldensecrets'
+version '0.0.1a'
+
+compileJava.options.encoding 'UTF-8'
+
+spigot {
+    authors = ['GoldenSecrets']
+    apiVersion = '1.14'
+/*
+    commands {
+        discord {
+            aliases = ['dcord']
+            description = 'Send discord invite.'
+            permission = 'pluginname.command.discord'
+            permissionMessage = 'You do not have the permission to use this command.'
+            usage = '/<command>'
+      instagram {
+            aliases = ['ingram']
+            description = 'Send Instagram link.'
+            permission = 'pluginname.command.instagram'
+            permissionMessage = 'You do not have the permission to use this command.'
+            usage = '/<command>'
+        youtube {
+            aliases = ['utube']
+            description = 'Send YouTube link.'
+            permission = 'pluginname.command.youtube'
+            permissionMessage = 'You do not have the permission to use this command.'
+            usage = '/<command>'
+        }
+    }
+ */
+    permissions {
+        'sample.give' {
+            description 'Allows give command'
+            defaults 'true'
+        }
+        'sample.*' {
+            description 'Wildcard permission'
+            defaults 'op'
+            children = ['test.foo': true]
+        }
+    }
+}
