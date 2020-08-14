@@ -8,7 +8,7 @@ public class Sender implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     Player player = sender.getPlayer();
-    player.sendMessage ("Equestrians United discord is https://discord.gg/BENtZpB")
+    player.sendMessage ("Equestrians United YouTube Channel is https://www.youtube.com/channel/UCnEzzOx3zHf29RHGPghYkuw")
         return true;
     }
 }
