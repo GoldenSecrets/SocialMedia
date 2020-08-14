@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly spigot() // <-- change this to the version you are coding for
+    compileOnly spigot('1.14') // <-- change this to the version you are coding for
 }
 
 group 'me.goldensecrets'
