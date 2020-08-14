@@ -13,6 +13,7 @@ version '0.0.1a'
 compileJava.options.encoding 'UTF-8'
 
 spigot {
+    main = 'me.goldensecrets.SocialMedia'
     authors = ['GoldenSecrets']
     apiVersion = '1.14'
 /*
