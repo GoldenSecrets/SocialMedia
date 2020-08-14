@@ -1,26 +1,29 @@
 package me.goldensecrets;
 
-import kr.entree.spigradle.annotations.PluginMain;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@PluginMain
+/* This confused me too:
+ *
+ * Error:   Please present your main class using the annotation @kr.entree.spigradle.annotations.PluginMain or @Plugin,
+ * Error:   or set the 'main' property in spigot {} block on build.gradle,
+ *
+ * It either wants @Plugin OR @kr.entree.spigradle.annotations.PluginMain
+ * I thought @PluginMain would work. But no bueno. ^_^
+ * I couldn't get either annotation to work. I added main to build.gradle
+ */
+
 public class SocialMedia extends JavaPlugin {
 
 	@Override
-	public void onEnable () {
+	public void onEnable () {   // Only use one onEnable- you can run as many methods or commands as you want to inside it.
 		//Register our command "Discord"
-		this.getCommand("discord").setExecutor(new CommandDiscord());
-	}
+		this.getCommand("discord").setExecutor(new Sender()); // When server hears "discord" command start Sender class
 
-	@Override
-	public void onEnable () {
 		//Register our command "Instagram"
-		this.getCommand("instagram").setExecutor(new CommandInstagram());
-	}
+		this.getCommand("instagram").setExecutor(new Insta()); // When Server hears "instagram" run new CommandInstagram
+		// This needs to match the class you put the command code in
 
-	@Override
-	public void onEnable () {
 		//Register our command "YouTube"
-		this.getCommand("youtube").setExecutor(new CommandYouTube());
+		this.getCommand("youtube").setExecutor(new YouTube());
 	}
 }
