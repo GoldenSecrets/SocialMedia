@@ -4,7 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-// Class Names should match the filename
+
+// Class Names should match the class name in IntelliJ (which is also the filename)
 public class Insta implements CommandExecutor {
 
 	// This method is called, when somebody uses our command
@@ -16,6 +17,6 @@ public class Insta implements CommandExecutor {
 			return true;
 		}
 		return false;   // This has to return either true of false. So if sender is not a player (console or command)
-						// It will do nothing, and return false.
+		// It will do nothing, and return false.
 	}
 }

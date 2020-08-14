@@ -9,7 +9,7 @@ public class YouTube implements CommandExecutor {
 
 	// This method is called, when somebody uses our command
 	@Override
-	public boolean onCommand (CommandSender sender, Command command, String label, String[] args) {  // Curly braces surround code that is executed.
+	public boolean onCommand (CommandSender sender, Command command, String label, String[] args) {  // Curly braces surround code to be executed.
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			player.sendMessage("Equestrians United YouTube Channel is https://www.youtube.com/channel/UCnEzzOx3zHf29RHGPghYkuw"); // All commands end with ;
