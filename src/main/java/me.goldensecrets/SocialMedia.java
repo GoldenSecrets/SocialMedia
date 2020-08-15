@@ -1,26 +1,40 @@
 package me.goldensecrets;
 
-import kr.entree.spigradle.annotations.PluginMain;
+import co.aikar.commands.BukkitCommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@PluginMain
+/* This confused me too:
+ *
+ * Error:   Please present your main class using the annotation @kr.entree.spigradle.annotations.PluginMain or @Plugin,
+ * Error:   or set the 'main' property in spigot {} block on build.gradle,
+ *
+ * It either wants @Plugin OR @kr.entree.spigradle.annotations.PluginMain
+ * I thought @PluginMain would work. But no bueno. ^_^
+ * I couldn't get either annotation to work. I added main to build.gradle
+ */
+
 public class SocialMedia extends JavaPlugin {
 
-    @Override
-    public void onEnable() {
-        //Register our command "Discord"
-        this.getCommand("discord").setExecutor(new CommandDiscord());
-    }
 
-    @Override
-    public void onEnable() {
-        //Register our command "Instagram"
-        this.getCommand("instagram").setExecutor(new CommandInstagram());
-    }
+	private static SocialMedia instance;
 
-    @Override
-    public void onEnable() {
-        //Register our command "YouTube"
-        this.getCommand("youtube").setExecutor(new CommandYouTube());
-    }
+	@Override
+	public void onEnable () {   // Only use one onEnable- you can run as many methods or commands as you want to inside it.
+		instance = this;
+		registerCommands();
+	}
+
+	private void registerCommands () {
+		// You need to register a command manager. You only need to do this once.
+		BukkitCommandManager manager = new BukkitCommandManager(this);
+		// Then use the manager to register each command.
+		manager.registerCommand(new Sender());
+		// Register the other commands here
+	}
+
+	// This method is used to refer to the plugin from other classes.
+	// Think of it as "getPlugin" but that method is used by Bukkit so we use different name.
+	public static SocialMedia getInstance () {
+		return instance;
+	}
 }
