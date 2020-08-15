@@ -1,5 +1,6 @@
 package me.goldensecrets;
 
+import co.aikar.commands.BukkitCommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /* This confused me too:
@@ -14,16 +15,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SocialMedia extends JavaPlugin {
 
+
+	private static SocialMedia instance;
+
 	@Override
 	public void onEnable () {   // Only use one onEnable- you can run as many methods or commands as you want to inside it.
-		//Register our command "Discord"
-		this.getCommand("discord").setExecutor(new Sender()); // When server hears "discord" command start Sender class
+		instance = this;
+		registerCommands();
+	}
 
-		//Register our command "Instagram"
-		this.getCommand("instagram").setExecutor(new Insta()); // When Server hears "instagram" run new Insta class.
-		// This needs to match the class you put the command code in
+	private void registerCommands () {
+		// You need to register a command manager. You only need to do this once.
+		BukkitCommandManager manager = new BukkitCommandManager(this);
+		// Then use the manager to register each command.
+		manager.registerCommand(new Sender());
+		// Register the other commands here
+	}
 
-		//Register our command "YouTube"
-		this.getCommand("youtube").setExecutor(new YouTube()); // Try and guess what this does ^_^
+	// This method is used to refer to the plugin from other classes.
+	// Think of it as "getPlugin" but that method is used by Bukkit so we use different name.
+	public static SocialMedia getInstance () {
+		return instance;
 	}
 }
