@@ -1,16 +1,50 @@
+// Configure Auto Relocation
+import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
 plugins {
     id 'java'
     id 'kr.entree.spigradle' version '2.1.1'
+    // Shadow embeds dependencies in our jar such as our command framework
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
 }
-
+repositories {
+    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
+    maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+}
 dependencies {
+    // compileOnly means that it is used when we write and compile code
+    // but is not included with our JAR - It should be provided separately.
     compileOnly spigot('1.14') // <-- change this to the version you are coding for
+    // implementation means it is needed by our jar and included with it.
+    // Shadow plugin takes care of this.
+    implementation "co.aikar:acf-bukkit:0.5.0-SNAPSHOT"
+}
+defaultTasks 'clean', 'shadowJar'
+task relocateShadowJar(type: ConfigureShadowRelocation) {
+    target = tasks.shadowJar
+    // If you have multiple plugins using a library (like command framework)
+    // it will cause problems if they are not separated like this.
+    // It changes the package they are in from 'co.aikar.commands' to 'me.goldensecrets.acf'
+    // the 'me.soldensecrets.acf' could be anything but needs to be unique between plugins.
+    prefix = "me.goldensecrets.shadow" // Default value is "shadow"
+}
+shadowJar {
+    classifier = null // remove -all from end of jar when compiled
+    // If this is uncommented it will remove the version number from filename
+    // when it is compiled. so 'SocialMedia.jar' would be the output
+//    version = null
 }
 
 group 'me.goldensecrets'
-version '0.0.1a'
+version '0.2.0'
 
-compileJava.options.encoding 'UTF-8'
+compileJava {
+    options.encoding 'UTF-8'
+    options.compilerArgs += ["-parameters"]
+    options.fork = true
+    // Unsure why Aikar has this - it caused errors for me.
+//    options.forkOptions.executable = 'javac'
+}
+tasks.debugPaper.dependsOn shadowJar
 
 spigot {
     main = 'me.goldensecrets.SocialMedia'
