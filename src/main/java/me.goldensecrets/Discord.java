@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class Discord extends BaseCommand {
 
 	// We can use the name plugin here because it is private and does not extend JavaPlugin
-	private static SocialMedia plugin = SocialMedia.getInstance();
+	private static final SocialMedia plugin = SocialMedia.getInstance();
 
 	@Default // Use default because there are no sub command or arguments passed to it.
 	public static void onDiscord (CommandSender sender) {

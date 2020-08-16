@@ -30,6 +30,8 @@ public class SocialMedia extends JavaPlugin {
 		// Then use the manager to register each command.
 		manager.registerCommand(new Discord());
 		// Register the other commands here
+		manager.registerCommand(new Insta());
+		manager.registerCommand(new YouTube());
 	}
 
 	// This method is used to refer to the plugin from other classes.

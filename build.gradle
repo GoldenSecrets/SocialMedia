@@ -18,7 +18,7 @@ dependencies {
     // implementation means it is needed by our jar and included with it.
     // Shadow plugin takes care of this.
     implementation "co.aikar:acf-bukkit:0.5.0-SNAPSHOT"
-    implementation 'com.github.JavaFactoryDev:LightningStorage:3.1.8-SNAPSHOT'
+    implementation 'com.github.JavaFactoryDev:LightningStorage:3.1.8'
 }
 defaultTasks 'clean', 'shadowJar'
 task relocateShadowJar(type: ConfigureShadowRelocation) {

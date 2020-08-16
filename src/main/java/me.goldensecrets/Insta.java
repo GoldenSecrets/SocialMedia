@@ -1,22 +1,36 @@
 package me.goldensecrets;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import co.aikar.commands.BaseCommand;
+import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.Default;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// Class Names should match the class name in IntelliJ (which is also the filename)
-public class Insta implements CommandExecutor {
+import java.util.logging.Logger;
 
-	// This method is called, when somebody uses our command
-	@Override
-	public boolean onCommand (CommandSender sender, Command command, String label, String[] args) {
-		if (sender instanceof Player) { // Is sender a Player?
-			Player player = (Player) sender; // If yes, cast sender to player ( Force Java to see sender as player )
-			player.sendMessage("Equestrians United instagram is https://www.instagram.com/equestrians.united.mc/");
-			return true;
-		}
-		return false;   // This has to return either true of false. So if sender is not a player (console or command)
-		// It will do nothing, and return false.
-	}
+// Class Names should match the class name in IntelliJ (which is also the filename)
+@CommandAlias("instagram")
+public class Insta extends BaseCommand {
+
+    // We can use the name plugin here because it is private and does not extend JavaPlugin
+    private static final SocialMedia plugin = SocialMedia.getInstance();
+
+    @Default // Use default because there are no sub command or arguments passed to it.
+    public static void onInstagram (CommandSender sender) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            player.sendMessage("Equestrians United Instagram is https://www.instagram.com/equestrians.united.mc/?hl=en");
+            // This command structure is a void type; which means you do not need to return anything.
+        }
+        if (! (sender instanceof CommandBlock)) {
+            // Read about logic operators in Java. ! means not
+            // so in this case if sender is NOT a CommandBlock do this code
+            Logger log = plugin.getLogger();
+            // There are several levels you can write to log (console)
+            // The main ones are INFO, WARN, ERROR
+            log.info("Did you forget the Instagram link boss?");
+            log.info("It is https://www.instagram.com/equestrians.united.mc/?hl=en");
+        }
+    }
 }
