@@ -9,6 +9,7 @@ plugins {
 repositories {
     maven { url = "https://repo.aikar.co/content/groups/aikar/" }
     maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+    maven { url = "https://jitpack.io"}
 }
 dependencies {
     // compileOnly means that it is used when we write and compile code
@@ -17,6 +18,7 @@ dependencies {
     // implementation means it is needed by our jar and included with it.
     // Shadow plugin takes care of this.
     implementation "co.aikar:acf-bukkit:0.5.0-SNAPSHOT"
+    implementation 'com.github.JavaFactoryDev:LightningStorage:3.1.8-SNAPSHOT'
 }
 defaultTasks 'clean', 'shadowJar'
 task relocateShadowJar(type: ConfigureShadowRelocation) {
