@@ -28,7 +28,7 @@ public class SocialMedia extends JavaPlugin {
 		// You need to register a command manager. You only need to do this once.
 		BukkitCommandManager manager = new BukkitCommandManager(this);
 		// Then use the manager to register each command.
-		manager.registerCommand(new Sender());
+		manager.registerCommand(new Discord());
 		// Register the other commands here
 	}
 

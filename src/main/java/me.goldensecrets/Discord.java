@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 // The commands will extend BaseCommand - each class will need to extend BaseCommand
 @CommandAlias("discord")
-public class Sender extends BaseCommand {
+public class Discord extends BaseCommand {
 
 	// We can use the name plugin here because it is private and does not extend JavaPlugin
 	private static SocialMedia plugin = SocialMedia.getInstance();
