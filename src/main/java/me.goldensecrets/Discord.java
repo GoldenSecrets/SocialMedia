@@ -3,6 +3,7 @@ package me.goldensecrets;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Default;
+import de.leonhard.storage.Yaml;
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -18,6 +19,9 @@ public class Discord extends BaseCommand {
 
 	@Default // Use default because there are no sub command or arguments passed to it.
 	public static void onDiscord (CommandSender sender) {
+		Yaml config = new Yaml("config",SocialMedia.getInstance().getDataFolder().toString(),SocialMedia.getInstance().getResource("config.yml"));
+		String url;
+		url = config.getString("Discord.url");
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			player.sendMessage("Equestrians United discord is https://discord.gg/BENtZpB");
