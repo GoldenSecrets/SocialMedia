@@ -44,7 +44,7 @@ compileJava {
     // Unsure why Aikar has this - it caused errors for me.
 //    options.forkOptions.executable = 'javac'
 }
-tasks.debugPaper.dependsOn shadowJar
+tasks.prepareSpigotPlugins.dependsOn shadowJar
 
 spigot {
     main = 'me.goldensecrets.SocialMedia'
