@@ -19,7 +19,8 @@ public class Insta extends BaseCommand {
 
     @Default // Use default because there are no sub command or arguments passed to it.
     public static void onInstagram (CommandSender sender) {
-        Yaml config; new Yaml("config",SocialMedia.getInstance().getDataFolder().toString(),SocialMedia.getInstance().getResource("config.yml"));
+        Yaml config;
+        config = new Yaml("config",SocialMedia.getInstance().getDataFolder().toString(),SocialMedia.getInstance().getResource("config.yml"));
         String url;
         url = config.getString("Instagram.url");
         if (sender instanceof Player) {
